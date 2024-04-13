@@ -32,7 +32,7 @@
             "name": ".NET Core Attach",
             "type": "chrome",
             "request": "attach",
-            "url": "https://localhost:5001/swagger/index.html"
+            "url": "http://localhost:5001/swagger/index.html"
         }
     ]
 }

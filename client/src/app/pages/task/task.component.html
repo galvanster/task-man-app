@@ -1,0 +1,48 @@
+<p>task works!</p>
+
+<div class="flex justify-between items-center mb-6">
+  <h4 class="font-bold text-2xl"></h4>
+  <button type="button" (click)="openModel()" class="btn btn-sm btn-outline-primary text-center mb-6 ">
+    Add Task</button>
+</div>
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <caption
+      class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      Manage Tasks
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Id
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Description
+        </th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of tasks; track $index) {
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{item.id}}
+        </th>
+        <td class="px-6 py-4">
+          {{item.description}}
+        </td>
+        <td class="px-6 py-4 text-right">
+          <button type="button" (click)="item.id && loadTaskItem(item)"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">Edit</button>
+          <button type="button" (click)="item.id && deleteTaskItem(item.id)"
+            class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
