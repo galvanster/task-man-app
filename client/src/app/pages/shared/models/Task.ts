@@ -4,7 +4,7 @@ export interface ApiResponse<T> {
 }
 
 export interface ITask {
-  id?: string;
+  id: string;
   description: string;
 
 }

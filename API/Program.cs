@@ -16,6 +16,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("TestDb"))
     );
 
+             builder.Services.AddCors(opt =>
+             {
+                 opt.AddPolicy("CorsPolicy", policy =>
+                 {
+                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
+                 });
+             });
+
 builder.Services.AddScoped<ITaskItemRepository, TaskItemRepository>();
 
 var app = builder.Build();
@@ -38,5 +46,6 @@ app.UseRouting();
 app.UseStaticFiles();
 
 app.UseCors("CorsPolicy");
+
 
 app.Run();

@@ -21,7 +21,7 @@ namespace API.Controllers
         }
     
         [HttpGet]
-        public async Task<ActionResult<List<TaskItem>>> GetTaskItems()
+        public async Task<ActionResult<IEnumerable<TaskItem>>> GetTaskItems()
         {
             try
             {
@@ -68,15 +68,15 @@ namespace API.Controllers
             }
         }
 
-       [HttpPut]
-       public async Task<ActionResult<TaskItem>> UpdateTaskItem(TaskItem taskItem)
+       [HttpPut("{id}")]
+       public async Task<ActionResult<TaskItem>> UpdateTaskItem(int id, TaskItem taskItem)
         {   
             try
             {
-                var taskItemToUpdate = await _taskItemRepository.GetTaskItem(taskItem.Id);
+                var taskItemToUpdate = await _taskItemRepository.GetTaskItem(id);
 
                 if (taskItemToUpdate == null)
-                    return NotFound($"Task Item with Id = {taskItem.Id} not found");
+                    return NotFound($"Task Item with Id = {id} not found");
 
                 return await _taskItemRepository.UpdateTaskItem(taskItem);
             }

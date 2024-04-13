@@ -13,7 +13,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CommonModule, formatDate } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TaskService } from '../../services/task.service';
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +27,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TaskFormComponent implements OnChanges {
     @Input() data: ITask | null = null;
-    @Output() onCloseModel = new EventEmitter();
+    @Output() onCloseModal = new EventEmitter();
 
     taskForm!: FormGroup;
 
@@ -38,11 +38,12 @@ export class TaskFormComponent implements OnChanges {
   ) {
     this.taskForm = this.fb.group({
       description: new FormControl('', [Validators.required]),
+      id: new FormControl('', [Validators.required]),
     });
   }
 
   onClose() {
-    this.onCloseModel.emit(false);
+    this.onCloseModal.emit(false);
   }
 
   ngOnChanges(): void {
@@ -57,18 +58,18 @@ export class TaskFormComponent implements OnChanges {
     if (this.taskForm.valid) {
       if (this.data) {
         this.taskService
-          .updateTaskItem(this.data.id as string, this.taskForm.value)
+          .updateTaskItem(this.data.id, this.taskForm.value )
           .subscribe({
             next: (response: any) => {
               this.resetTaskForm();
-              this.toastr.success(response.message);
+              this.toastr.success("Task Updated");
             },
           });
       } else {
         this.taskService.addTaskItem(this.taskForm.value).subscribe({
           next: (response: any) => {
             this.resetTaskForm();
-            this.toastr.success(response.message);
+            this.toastr.success("Task Added");
           },
         });
       }

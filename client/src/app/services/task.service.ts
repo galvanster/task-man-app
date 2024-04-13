@@ -7,15 +7,16 @@ import { ApiResponse, ITask } from '../pages/shared/models/Task';
   providedIn: 'root',
 })
 export class TaskService {
-  apiUrl = 'https://localhost:5001/api/tasks';
+  apiUrl = 'http://localhost:5001/api/tasks';
   constructor(private http: HttpClient) {}
 
-  getTaskItems(): Observable<ApiResponse<ITask[]>> {
-    return this.http.get<ApiResponse<ITask[]>>(`${this.apiUrl}`);
+
+  getTaskItems(): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`${this.apiUrl}`);
   }
 
-  getTaskItem(id: string): Observable<ApiResponse<ITask>> {
-    return this.http.get<ApiResponse<ITask>>(`${this.apiUrl}/${id}`);
+  getTaskItem(id: string): Observable<ITask> {
+    return this.http.get<ITask>(`${this.apiUrl}/${id}`);
   }
 
   addTaskItem(task: ITask): Observable<any> {
@@ -26,8 +27,8 @@ export class TaskService {
     return this.http.put(`${this.apiUrl}/${id}`, task);
   }
 
-  deleteTaskItem(id: string): Observable<ApiResponse<any>> {
-    return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
+  deleteTaskItem(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }
 

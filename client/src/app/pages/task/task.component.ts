@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModelComponent } from '../shared/components/model.component'; 
+import { ModalComponent } from '../shared/components/modal/modal.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { ToastrService } from 'ngx-toastr';
 import { TaskService } from '../../services/task.service';
@@ -8,12 +8,12 @@ import { ITask } from '../shared/models/Task';
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [ModelComponent, TaskFormComponent],
+  imports: [ModalComponent, TaskFormComponent],
   templateUrl: './task.component.html',
-  styleUrl: './task.component.scss'
+  styleUrl: './task.component.scss',
 })
 export class TaskComponent implements OnInit {
-  isModelOpen = false;
+  isModalOpen = false;
   tasks: ITask[] = [];
   task!: ITask;
 
@@ -28,9 +28,9 @@ export class TaskComponent implements OnInit {
 
   getTaskItems() {
     this.taskService.getTaskItems().subscribe({
-      next: (response) => {
-        if (response.data) {
-          this.tasks = response.data;
+      next: (tasks) => {
+        if (tasks) {
+          this.tasks = tasks;
         }
       },
     });
@@ -38,7 +38,7 @@ export class TaskComponent implements OnInit {
 
   loadTaskItem(task: ITask) {
     this.task = task;
-    this.openModel();
+    this.openModal();
   }
 
   deleteTaskItem(id: string) {
@@ -50,12 +50,12 @@ export class TaskComponent implements OnInit {
     });
   }
 
-  openModel() {
-    this.isModelOpen = true;
+  openModal() {
+    this.isModalOpen = true;
   }
 
-  closeModel() {
-    this.isModelOpen = false;
+  closeModal() {
+    this.isModalOpen = false;
     this.getTaskItems();
   }
 }

@@ -1,12 +1,9 @@
-<p>task works!</p>
-
 <div class="flex justify-between items-center mb-6">
-  <h4 class="font-bold text-2xl"></h4>
-  <button type="button" (click)="openModel()" class="btn btn-sm btn-outline-primary text-center mb-6 ">
-    Add Task</button>
+  <h4 class="font-bold text-2xl">Task Manager</h4>
+  <button type="button" (click)="openModal()"
+    class="btn btn-success pull-right">Add
+    Task</button>
 </div>
-
-
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <caption
@@ -15,9 +12,6 @@
     </caption>
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
-        <th scope="col" class="px-6 py-3">
-          Id
-        </th>
         <th scope="col" class="px-6 py-3">
           Description
         </th>
@@ -30,11 +24,8 @@
       @for (item of tasks; track $index) {
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          {{item.id}}
-        </th>
-        <td class="px-6 py-4">
           {{item.description}}
-        </td>
+        </th>
         <td class="px-6 py-4 text-right">
           <button type="button" (click)="item.id && loadTaskItem(item)"
             class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">Edit</button>
@@ -46,3 +37,7 @@
     </tbody>
   </table>
 </div>
+
+<app-modal [isOpen]="isModalOpen" (closeModal)="closeModal()">
+  <app-task-form (onCloseModal)="closeModal()" [data]="task"></app-task-form>
+</app-modal>
