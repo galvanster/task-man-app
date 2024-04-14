@@ -37,8 +37,7 @@ export class TaskFormComponent implements OnChanges {
     private toastr: ToastrService
   ) {
     this.taskForm = this.fb.group({
-      description: new FormControl('', [Validators.required]),
-      id: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required])
     });
   }
 
@@ -58,7 +57,7 @@ export class TaskFormComponent implements OnChanges {
     if (this.taskForm.valid) {
       if (this.data) {
         this.taskService
-          .updateTaskItem(this.data.id, this.taskForm.value )
+          .updateTaskItem(this.data.id as string, this.taskForm.value)
           .subscribe({
             next: (response: any) => {
               this.resetTaskForm();

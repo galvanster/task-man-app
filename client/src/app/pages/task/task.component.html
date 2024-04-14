@@ -1,15 +1,11 @@
 <div class="flex justify-between items-center mb-6">
-  <h4 class="font-bold text-2xl">Task Manager</h4>
+  <h4 class="font-bold text-2xl"></h4>
   <button type="button" (click)="openModal()"
-    class="btn btn-success pull-right">Add
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-full px-3 py-1.5 text-center mb-2 ">Add
     Task</button>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <caption
-      class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-      Manage Tasks
-    </caption>
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="px-6 py-3">
@@ -41,3 +37,5 @@
 <app-modal [isOpen]="isModalOpen" (closeModal)="closeModal()">
   <app-task-form (onCloseModal)="closeModal()" [data]="task"></app-task-form>
 </app-modal>
+
+

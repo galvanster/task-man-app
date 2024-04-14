@@ -78,7 +78,9 @@ namespace API.Controllers
                 if (taskItemToUpdate == null)
                     return NotFound($"Task Item with Id = {id} not found");
 
-                return await _taskItemRepository.UpdateTaskItem(taskItem);
+                   taskItemToUpdate.Description = taskItem.Description; 
+
+                return await _taskItemRepository.UpdateTaskItem(taskItemToUpdate);
             }
             catch (Exception)
             {

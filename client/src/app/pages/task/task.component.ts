@@ -44,7 +44,7 @@ export class TaskComponent implements OnInit {
   deleteTaskItem(id: string) {
     this.taskService.deleteTaskItem(id).subscribe({
       next: (response) => {
-        this.toastr.success(response.message);
+        this.toastr.success("Task Deleted");
         this.getTaskItems();
       },
     });
