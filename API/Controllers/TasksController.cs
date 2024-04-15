@@ -39,7 +39,7 @@ namespace API.Controllers
         {
             try
             {
-                return await _taskItemRepository.GetTaskItem(id);
+                return Ok(await _taskItemRepository.GetTaskItem(id));
             }
             catch (Exception)
             {
@@ -80,7 +80,7 @@ namespace API.Controllers
 
                    taskItemToUpdate.Description = taskItem.Description; 
 
-                return await _taskItemRepository.UpdateTaskItem(taskItemToUpdate);
+                return Ok(await _taskItemRepository.UpdateTaskItem(taskItemToUpdate));
             }
             catch (Exception)
             {
@@ -101,9 +101,8 @@ namespace API.Controllers
                     return NotFound($"Task Item with Id = {id} not found");
                 }
 
-               return await _taskItemRepository.DeleteTaskItem(id);
+               return Ok(await _taskItemRepository.DeleteTaskItem(id));
              
-            
             }
             catch (Exception)
             {
