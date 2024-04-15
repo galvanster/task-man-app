@@ -86,7 +86,7 @@ namespace API.Tests
             var controller = new TasksController(mockRepo.Object);
               
             // Act  
-            var actionResult = await controller.UpdateTaskItem(t);
+            var actionResult = await controller.UpdateTaskItem(t.Id, t);
             var result = actionResult.Result as OkObjectResult;
            
             //Assert
