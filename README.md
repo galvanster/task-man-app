@@ -1,5 +1,5 @@
 # TaskAppMan
-This project was generated with Angular 17 [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0. Be sure to run `npm install` after cloning.  
+This simplee task manager project was generated with Angular 17 [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0. Be sure to run `npm install` after cloning.  
 .Net 8 Core was used for generating the Web API/Repository pattern logic using in-memory database(Microsoft.EntityFrameworkCore.InMemory) for data storage.   
 
 ## Development Server
